@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/10/25/hello-world/index.html">
 <meta property="og:site_name" content="KingSoft AILab">
 <meta property="og:description" content="Welcome to KingSoft AILab! In this article,we’ll walk through getting TensorFlow, Google’s machine learning library, set up to perform inference directly on an iOS device. Installing TensorFlow on IOS">
-<meta property="og:updated_time" content="2017-10-26T02:43:38.000Z">
+<meta property="og:updated_time" content="2017-10-26T02:46:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Getting Started with TensorFlow On IOS">
 <meta name="twitter:description" content="Welcome to KingSoft AILab! In this article,we’ll walk through getting TensorFlow, Google’s machine learning library, set up to perform inference directly on an iOS device. Installing TensorFlow on IOS">
@@ -222,11 +222,11 @@
 <h4 id="Setting-up-xcode-project"><a href="#Setting-up-xcode-project" class="headerlink" title="Setting up xcode project"></a>Setting up xcode project</h4><blockquote>
 <p>Create a new xcode project,we call it TensorFlowTest,then,we have to tell the iOS target about the TensorFlow static library we built for iOS (and the protocol buffer library is relies on). To do this, copy the following static library to your TensorFlowTest project Dir.</p>
 </blockquote>
-<p><strong>tensorflow/tensorflow/contrib/makefile/gen/lib/libtensorflow-core.a</strong><br><strong>tensorflow/tensorflow/contrib/makefile/gen/protobuf_ios/lib/libprotobuf-lite.a</strong><br><strong>tensorflow/tensorflow/contrib/makefile/gen/lib/libprotobuf.a</strong></p>
+<p><table><tr><td bgcolorr="gray"> <strong>tensorflow/tensorflow/contrib/makefile/gen/lib/libtensorflow-core.a</strong><br><strong>tensorflow/tensorflow/contrib/makefile/gen/protobuf_ios/lib/libprotobuf-lite.a</strong><br><strong>tensorflow/tensorflow/contrib/makefile/gen/lib/libprotobuf.a</strong></td></tr></table></p>
 <blockquote>
 <p>Then add select xcode “Building Setting” menu,add <strong>$(PROJECT_DIR)/TensorFlowTest</strong> to Library Search Paths.Here replace <em>TensorFlowTest</em> to your project name. We’ll also add the following flags to Other Linker Flags:</p>
 </blockquote>
-<p><em>-force_load $(PROJECT_DIR)/Your_Project_Name/libtensorflow-core.a</em><br><em>$(PROJECT_DIR)/Your_Project_Name/libprotobuf-lite.a</em><br><em>$(PROJECT_DIR)/Your_Project_Name/libprotobuf.a</em></p>
+<p><strong>-force_load $(PROJECT_DIR)/Your_Project_Name/libtensorflow-core.a</strong><br><strong>$(PROJECT_DIR)/Your_Project_Name/libprotobuf-lite.a</strong><br><strong>$(PROJECT_DIR)/Your_Project_Name/libprotobuf.a</strong></p>
 <blockquote>
 <p>Next, we add the following to Header Search Paths.</p>
 </blockquote>
