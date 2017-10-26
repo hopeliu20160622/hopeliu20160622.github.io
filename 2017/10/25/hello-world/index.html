@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/10/25/hello-world/index.html">
 <meta property="og:site_name" content="KingSoft AILab">
 <meta property="og:description" content="Welcome to KingSoft AILab! In this article,we’ll walk through getting TensorFlow, Google’s machine learning library, set up to perform inference directly on an iOS device. Installing TensorFlow on IOS">
-<meta property="og:updated_time" content="2017-10-26T02:40:40.000Z">
+<meta property="og:updated_time" content="2017-10-26T02:43:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Getting Started with TensorFlow On IOS">
 <meta name="twitter:description" content="Welcome to KingSoft AILab! In this article,we’ll walk through getting TensorFlow, Google’s machine learning library, set up to perform inference directly on an iOS device. Installing TensorFlow on IOS">
@@ -208,7 +208,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Welcome to KingSoft AILab! In this article,we’ll walk through getting TensorFlow, Google’s machine learning library, set up to perform inference directly on an iOS device.</p>
-<h2 id="Installing-TensorFlow-on-IOS"><a href="#Installing-TensorFlow-on-IOS" class="headerlink" title="Installing TensorFlow on IOS"></a>Installing TensorFlow on IOS</h2><h4 id="DownLoad-TensorFlow-source-Packages"><a href="#DownLoad-TensorFlow-source-Packages" class="headerlink" title="DownLoad TensorFlow source Packages"></a>DownLoad TensorFlow source Packages</h4><blockquote>
+<h4 id="Installing-TensorFlow-on-IOS"><a href="#Installing-TensorFlow-on-IOS" class="headerlink" title="Installing TensorFlow on IOS"></a>Installing TensorFlow on IOS</h4><blockquote>
 <p>The binary distribution of TensorFlow for macOS does not include the IOS static library or some of the scripts we’ll need, so we’ll have to build both ourselves in a later section. Since it helps if the version of the iOS library is the same as the version of TensorFlow installed on our system, we’ll re-install the latest version of TensorFlow from source (even if it’s already installed). This can save us some headaches down the road.</p>
 <p>DownLoad TensorFlow here: <a href="https://github.com/tensorflow/tensorflow" target="_blank" rel="external">TensorFlow</a></p>
 </blockquote>
@@ -220,8 +220,18 @@
 <p>Running build_all_ios.sh will generate a TensorFlow static library in the tensorflow/contrib/makefile/gen/lib subdirectory. This library is compiled for ARMv7, ARM64, and x86 architectures, so you can use it in both the iOS simulator and on iOS hardware.</p>
 </blockquote>
 <h4 id="Setting-up-xcode-project"><a href="#Setting-up-xcode-project" class="headerlink" title="Setting up xcode project"></a>Setting up xcode project</h4><blockquote>
-<p>Create a new xcode project,we call it TensorFlowTest,then,we have to tell the iOS target about the TensorFlow static library we built for iOS (and the protocol buffer library is relies on). To do this, copy the following static library to your TensorFlowTest project Dir<br><strong>tensorflow/tensorflow/contrib/makefile/gen/lib/libtensorflow-core.a</strong><br><strong>tensorflow/tensorflow/contrib/makefile/gen/protobuf_ios/lib/libprotobuf-lite.a</strong><br><strong>tensorflow/tensorflow/contrib/makefile/gen/lib/libprotobuf.a</strong><br>Then add select xcode “Building Setting” menu,add <strong>$(PROJECT_DIR)/TensorFlowTest</strong> to Library Search Paths.Here replace <em>TensorFlowTest</em> to your project name. We’ll also add the following flags to Other Linker Flags:<br><em>-force_load $(PROJECT_DIR)/Your_Project_Name/libtensorflow-core.a</em><br><em>$(PROJECT_DIR)/Your_Project_Name/libprotobuf-lite.a</em><br><em>$(PROJECT_DIR)/Your_Project_Name/libprotobuf.a</em></p>
-<p>Next, we add the following to Header Search Paths.<br><strong>~/tensorflow</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/gen/proto</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/downloads</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/downloads/protobuf/src</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/downloads/eigen</strong></p>
+<p>Create a new xcode project,we call it TensorFlowTest,then,we have to tell the iOS target about the TensorFlow static library we built for iOS (and the protocol buffer library is relies on). To do this, copy the following static library to your TensorFlowTest project Dir.</p>
+</blockquote>
+<p><strong>tensorflow/tensorflow/contrib/makefile/gen/lib/libtensorflow-core.a</strong><br><strong>tensorflow/tensorflow/contrib/makefile/gen/protobuf_ios/lib/libprotobuf-lite.a</strong><br><strong>tensorflow/tensorflow/contrib/makefile/gen/lib/libprotobuf.a</strong></p>
+<blockquote>
+<p>Then add select xcode “Building Setting” menu,add <strong>$(PROJECT_DIR)/TensorFlowTest</strong> to Library Search Paths.Here replace <em>TensorFlowTest</em> to your project name. We’ll also add the following flags to Other Linker Flags:</p>
+</blockquote>
+<p><em>-force_load $(PROJECT_DIR)/Your_Project_Name/libtensorflow-core.a</em><br><em>$(PROJECT_DIR)/Your_Project_Name/libprotobuf-lite.a</em><br><em>$(PROJECT_DIR)/Your_Project_Name/libprotobuf.a</em></p>
+<blockquote>
+<p>Next, we add the following to Header Search Paths.</p>
+</blockquote>
+<p><strong>~/tensorflow</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/gen/proto</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/downloads</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/downloads/protobuf/src</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/downloads/eigen</strong></p>
+<blockquote>
 <p>Now that the xcode project is set up, we’ll load up our model and perform inference on the test datesets.</p>
 </blockquote>
 
