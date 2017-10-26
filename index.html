@@ -218,11 +218,11 @@
 <blockquote>
 <p>Then add select xcode “Building Setting” menu,add <strong>$(PROJECT_DIR)/TensorFlowTest</strong> to Library Search Paths.Here replace <em>TensorFlowTest</em> to your project name. We’ll also add the following flags to Other Linker Flags:</p>
 </blockquote>
-<p><strong>-force_load $(PROJECT_DIR)/Your_Project_Name/libtensorflow-core.a</strong><br><strong>$(PROJECT_DIR)/Your_Project_Name/libprotobuf-lite.a</strong><br><strong>$(PROJECT_DIR)/Your_Project_Name/libprotobuf.a</strong></p>
+<p><table><tr><td bgcolorr="gray"> <strong>-force_load $(PROJECT_DIR)/Your_Project_Name/libtensorflow-core.a</strong><br><strong>$(PROJECT_DIR)/Your_Project_Name/libprotobuf-lite.a</strong><br><strong>$(PROJECT_DIR)/Your_Project_Name/libprotobuf.a</strong></td></tr></table></p>
 <blockquote>
 <p>Next, we add the following to Header Search Paths.</p>
 </blockquote>
-<p><strong>~/tensorflow</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/gen/proto</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/downloads</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/downloads/protobuf/src</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/downloads/eigen</strong></p>
+<p><table><tr><td bgcolorr="gray"> <strong>~/tensorflow</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/gen/proto</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/downloads</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/downloads/protobuf/src</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/downloads/eigen</strong></td></tr></table></p>
 <blockquote>
 <p>Now that the xcode project is set up, we’ll load up our model and perform inference on the test datesets.</p>
 </blockquote>
