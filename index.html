@@ -214,15 +214,15 @@
 <h4 id="Setting-up-xcode-project"><a href="#Setting-up-xcode-project" class="headerlink" title="Setting up xcode project"></a>Setting up xcode project</h4><blockquote>
 <p>Create a new xcode project,we call it TensorFlowTest,then,we have to tell the iOS target about the TensorFlow static library we built for iOS (and the protocol buffer library is relies on). To do this, copy the following static library to your TensorFlowTest project Dir.</p>
 </blockquote>
-<p><table><tr><td bgcolorr="gray"> <strong>tensorflow/tensorflow/contrib/makefile/gen/lib/libtensorflow-core.a</strong><br><strong>tensorflow/tensorflow/contrib/makefile/gen/protobuf_ios/lib/libprotobuf-lite.a</strong><br><strong>tensorflow/tensorflow/contrib/makefile/gen/lib/libprotobuf.a</strong></td></tr></table></p>
+<p><table><tr><td bgcolorr="BlueViolet"> <strong>tensorflow/tensorflow/contrib/makefile/gen/lib/libtensorflow-core.a</strong><br><strong>tensorflow/tensorflow/contrib/makefile/gen/protobuf_ios/lib/libprotobuf-lite.a</strong><br><strong>tensorflow/tensorflow/contrib/makefile/gen/lib/libprotobuf.a</strong></td></tr></table></p>
 <blockquote>
 <p>Then add select xcode “Building Setting” menu,add <strong>$(PROJECT_DIR)/TensorFlowTest</strong> to Library Search Paths.Here replace <em>TensorFlowTest</em> to your project name. We’ll also add the following flags to Other Linker Flags:</p>
 </blockquote>
-<p><table><tr><td bgcolorr="gray"> <strong>-force_load $(PROJECT_DIR)/Your_Project_Name/libtensorflow-core.a</strong><br><strong>$(PROJECT_DIR)/Your_Project_Name/libprotobuf-lite.a</strong><br><strong>$(PROJECT_DIR)/Your_Project_Name/libprotobuf.a</strong></td></tr></table></p>
+<p><table><tr><td bgcolorr="BlueViolet"> <strong>-force_load $(PROJECT_DIR)/Your_Project_Name/libtensorflow-core.a</strong><br><strong>$(PROJECT_DIR)/Your_Project_Name/libprotobuf-lite.a</strong><br><strong>$(PROJECT_DIR)/Your_Project_Name/libprotobuf.a</strong></td></tr></table></p>
 <blockquote>
 <p>Next, we add the following to Header Search Paths.</p>
 </blockquote>
-<p><table><tr><td bgcolorr="gray"> <strong>~/tensorflow</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/gen/proto</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/downloads</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/downloads/protobuf/src</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/downloads/eigen</strong></td></tr></table></p>
+<p><table><tr><td bgcolorr="BlueViolet"> <strong>~/tensorflow</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/gen/proto</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/downloads</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/downloads/protobuf/src</strong><br><strong>~/tensorflow/tensorflow/contrib/makefile/downloads/eigen</strong></td></tr></table></p>
 <blockquote>
 <p>Now that the xcode project is set up, we’ll load up our model and perform inference on the test datesets.</p>
 </blockquote>
