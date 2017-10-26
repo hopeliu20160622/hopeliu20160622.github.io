@@ -200,17 +200,22 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Welcome to KingSoft AILab! In this article,we’ll walk through getting TensorFlow, Google’s machine learning library, set up to perform inference directly on an iOS device.</p>
-<h2 id="Installing-TensorFlow-on-IOS"><a href="#Installing-TensorFlow-on-IOS" class="headerlink" title="Installing TensorFlow on IOS"></a>Installing TensorFlow on IOS</h2><h4 id="DownLoad-TensorFlow-source-Packages"><a href="#DownLoad-TensorFlow-source-Packages" class="headerlink" title="DownLoad TensorFlow source Packages"></a>DownLoad TensorFlow source Packages</h4><p>The binary distribution of TensorFlow for macOS does not include the IOS static library or some of the scripts we’ll need, so we’ll have to build both ourselves in a later section. Since it helps if the version of the iOS library is the same as the version of TensorFlow installed on our system, we’ll re-install the latest version of TensorFlow from source (even if it’s already installed). This can save us some headaches down the road.</p>
+<h2 id="Installing-TensorFlow-on-IOS"><a href="#Installing-TensorFlow-on-IOS" class="headerlink" title="Installing TensorFlow on IOS"></a>Installing TensorFlow on IOS</h2><h4 id="DownLoad-TensorFlow-source-Packages"><a href="#DownLoad-TensorFlow-source-Packages" class="headerlink" title="DownLoad TensorFlow source Packages"></a>DownLoad TensorFlow source Packages</h4><blockquote>
+<p>The binary distribution of TensorFlow for macOS does not include the IOS static library or some of the scripts we’ll need, so we’ll have to build both ourselves in a later section. Since it helps if the version of the iOS library is the same as the version of TensorFlow installed on our system, we’ll re-install the latest version of TensorFlow from source (even if it’s already installed). This can save us some headaches down the road.</p>
 <p>DownLoad TensorFlow here: <a href="https://github.com/tensorflow/tensorflow" target="_blank" rel="external">TensorFlow</a></p>
-<h4 id="Building-Tensorflow-on-IOS"><a href="#Building-Tensorflow-on-IOS" class="headerlink" title="Building Tensorflow on IOS"></a>Building Tensorflow on IOS</h4><p>From our directory of TensorFlow sources, we can simply run:</p>
+</blockquote>
+<h4 id="Building-Tensorflow-on-IOS"><a href="#Building-Tensorflow-on-IOS" class="headerlink" title="Building Tensorflow on IOS"></a>Building Tensorflow on IOS</h4><blockquote>
+<p>From our directory of TensorFlow sources, we can simply run:</p>
+</blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ tensorflow/contrib/makefile/build_all_ios.sh</div></pre></td></tr></table></figure>
+<blockquote>
 <p>Running build_all_ios.sh will generate a TensorFlow static library in the tensorflow/contrib/makefile/gen/lib subdirectory. This library is compiled for ARMv7, ARM64, and x86 architectures, so you can use it in both the iOS simulator and on iOS hardware.</p>
-<h4 id="Setting-up-xcode-project"><a href="#Setting-up-xcode-project" class="headerlink" title="Setting up xcode project"></a>Setting up xcode project</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+</blockquote>
+<h4 id="Setting-up-xcode-project"><a href="#Setting-up-xcode-project" class="headerlink" title="Setting up xcode project"></a>Setting up xcode project</h4><blockquote>
+<p>Create a new xcode project,we call it TensorFlowTest,then,we have to tell the iOS target about the TensorFlow static library we built for iOS (and the protocol buffer library is relies on). To do this, copy <em>tensorflow/tensorflow/contrib/makefile/gen/lib/libtensorflow-core.a</em>,<em>tensorflow/tensorflow/contrib/makefile/gen/protobuf_ios/lib/libprotobuf-lite.a</em>,<em>tensorflow/tensorflow/contrib/makefile/gen/lib/libprotobuf.a</em> to your TensorFlowTest project Dir. Then add select xcode “Building Setting” menu,add <em>$(PROJECT_DIR)/TensorFlowTest</em> to Library Search Paths.Here replace <em>TensorFlowTest</em> to your project name. We’ll also add the following flags to Other Linker Flags:<br><em>-force_load $(PROJECT_DIR)/Your_Project_Name/libtensorflow-core.a</em><br><em>$(PROJECT_DIR)/Your_Project_Name/libprotobuf-lite.a</em><br><em>$(PROJECT_DIR)/Your_Project_Name/libprotobuf.a</em></p>
+<p>Next, we add the following to Header Search Paths.<br><em>~/tensorflow</em><br><em>~/tensorflow/tensorflow/contrib/makefile/gen/proto</em><br><em>~/tensorflow/tensorflow/contrib/makefile/downloads</em><br><em>~/tensorflow/tensorflow/contrib/makefile/downloads/protobuf/src</em><br><em>~/tensorflow/tensorflow/contrib/makefile/downloads/eigen</em></p>
+<p>Now that the xcode project is set up, we’ll load up our model and perform inference on the test datesets.</p>
+</blockquote>
 
       
     </div>
